@@ -16,13 +16,13 @@ import simpledb.file.*;
 public class Buffer {
    private Page contents = new Page();
    private Block blk = null;
-   private int pins = 0;
+   private int pins = 0; // CS4432-Project1: tracks pins
    private int modifiedBy = -1;  // negative means not modified
    private int logSequenceNumber = -1; // negative means no corresponding log record
-   private int locationInPool = -1;
-   private long timestamp = -1;
-   private int dirtyBit = 0;
-   private int secondChanceBit = 1;
+   private int locationInPool = -1; // // CS4432-Project1: Stores location of buffer in the bufferpool of the manager
+   private long timestamp = -1; // CS4432-Project1: Used for Least Replacement Policy
+   private int dirtyBit = 0; // CS4432-Project1: Used to check if page was modified. Later realized this was already implemented
+   private int secondChanceBit = 1; // CS4432-Project1: Used for clock replacement policy
 
 
    /**
@@ -193,35 +193,49 @@ public class Buffer {
       pins = 0;
    }
 
+   // CS4432-Project1: gets location of buffer in bufferpool
    public int getLocationInPool() {
       return locationInPool;
    }
 
+   // CS4432-Project1: stores location of buffer in bufferpool
    public void setLocationInPool(int locationInPool) {
       this.locationInPool = locationInPool;
    }
 
+   // CS4432-Project1: gets timestamp of last access time
    public long getTimestamp() {
       return timestamp;
    }
 
+   // CS4432-Project1: stores timestamp of last access time
    public void setTimestamp(long timestamp) {
       this.timestamp = timestamp;
    }
 
+   // CS4432-Project1: gets dirty bit to figure out of page has been modified. I later realized this was already implemented
    public int getDirtyBit() {
       return dirtyBit;
    }
 
+   // CS4432-Project1: stores dirty bit to figure out of page has been modified. I later realized this was already implemented
    public void setDirtyBit(int dirtyBit) {
       this.dirtyBit = dirtyBit;
    }
 
+   // CS4432-Project1: gets second chance bit for clock replacement policy
    public int getSecondChanceBit() {
       return secondChanceBit;
    }
 
+   // CS4432-Project1: stores second chance bit for clock replacement policy
    public void setSecondChanceBit(int secondChanceBit) {
       this.secondChanceBit = secondChanceBit;
+   }
+
+   // CS4432-Project1: My reporting function for this class
+   @Override
+   public String toString(){
+      return "Buffer ID: " + logSequenceNumber + " | BlockInfo: " + blk + " | Pins: " + pins + " | Last Access: " + timestamp + " | Dirty: " + modifiedBy;
    }
 }

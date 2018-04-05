@@ -121,4 +121,10 @@ public class BufferMgr {
    private boolean waitingTooLong(long starttime) {
       return System.currentTimeMillis() - starttime > MAX_TIME;
    }
+
+   // CS4432-Project1: My reporting function for this class
+   @Override
+   public String toString(){
+      return bufferMgr + " Buffer Timeout: " + MAX_TIME;
+   }
 }
