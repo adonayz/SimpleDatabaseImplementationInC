@@ -71,6 +71,7 @@ class BasicBufferMgr {
     * @return the pinned buffer
     */
    synchronized Buffer pin(Block blk) {
+       System.out.println(this.toString());
       Buffer buff = findExistingBuffer(blk);
       if (buff == null) {
          buff = chooseUnpinnedBuffer();
@@ -85,11 +86,12 @@ class BasicBufferMgr {
          blockMap.put(buff.block().hashCode(), buff.getLocationInPool());   // map new block to position
       }else{
           buff.setSecondChanceBit(1);   // // CS4432-Project1: reset second chance bit if is pinned again
-          buff.setTimestamp(System.currentTimeMillis());
+          buff.setTimestamp(System.nanoTime());
       }
       if (!buff.isPinned())
          numAvailable--;
       buff.pin();
+      System.out.println(this.toString());
       return buff;
    }
 
@@ -111,7 +113,7 @@ class BasicBufferMgr {
           return null;
       }else{
           buff.setSecondChanceBit(1);
-          buff.setTimestamp(System.currentTimeMillis());
+          buff.setTimestamp(System.nanoTime());
       }
       buff.assignToNew(filename, fmtr);
       numAvailable--;

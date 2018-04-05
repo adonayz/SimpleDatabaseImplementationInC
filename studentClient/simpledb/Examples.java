@@ -8,7 +8,7 @@ import java.sql.Statement;
 /**
  * Created by Adonay on 4/4/2018.
  */
-public class CreateBuildingDB {
+public class Examples {
     public static void main(String[] args) {
         Connection conn = null;
         try {

@@ -21,7 +21,7 @@ public class Buffer {
    private int logSequenceNumber = -1; // negative means no corresponding log record
    private int locationInPool = -1; // // CS4432-Project1: Stores location of buffer in the bufferpool of the manager
    private long timestamp = -1; // CS4432-Project1: Used for Least Replacement Policy
-   private int dirtyBit = 0; // CS4432-Project1: Used to check if page was modified. Later realized this was already implemented
+   private int dirtyBit = 0; // CS4432-Project1: Used to check if page was modified. Later realized this was already implemented. Please Ignore.
    private int secondChanceBit = 1; // CS4432-Project1: Used for clock replacement policy
 
 
@@ -236,6 +236,6 @@ public class Buffer {
    // CS4432-Project1: My reporting function for this class
    @Override
    public String toString(){
-      return "Buffer ID: " + logSequenceNumber + " | BlockInfo: " + blk + " | Pins: " + pins + " | Last Access: " + timestamp + " | Dirty: " + modifiedBy;
+      return "BID: " + logSequenceNumber + " | Blk: " + blk + " | Pn: " + pins + " | T: " + timestamp + " | Drt: " + modifiedBy;
    }
 }
